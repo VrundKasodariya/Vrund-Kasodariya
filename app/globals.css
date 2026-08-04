@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(180deg, rgba(7, 10, 7, 0.34), rgba(3, 4, 3, 0.98) 30rem),
+    radial-gradient(circle at 18% 0%, rgba(38, 219, 18, 0.075), transparent 22rem),
+    radial-gradient(circle at 82% 8%, rgba(0, 163, 255, 0.026), transparent 22rem),
+    #050505;
+}
+
+::selection {
+  background: rgba(38, 219, 18, 0.28);
+  color: #f8fafc;
+}
+
+.background-grid {
+  background-image:
+    linear-gradient(rgba(38, 219, 18, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(38, 219, 18, 0.032) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 58%);
+}
+
+.flow-field {
+  background:
+    radial-gradient(ellipse at 20% 35%, rgba(38, 219, 18, 0.055), transparent 28%),
+    linear-gradient(115deg, transparent 0%, rgba(38, 219, 18, 0.035) 34%, transparent 62%),
+    repeating-linear-gradient(105deg, transparent 0, transparent 42px, rgba(38, 219, 18, 0.018) 43px, transparent 92px);
+  filter: blur(0.2px);
+  opacity: 0.72;
+  transform: translate3d(0, 0, 0);
+  animation: flow-current 24s ease-in-out infinite alternate;
+}
+
+.surface {
+  border: 1px solid rgba(38, 219, 18, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.042), rgba(255, 255, 255, 0.018)),
+    rgba(8, 10, 8, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 14px 44px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.table-line {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.hairline {
+  background: linear-gradient(90deg, transparent, rgba(38, 219, 18, 0.26), transparent);
+  height: 1px;
+}
+
+.flow-divider {
+  height: 16px;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.flow-divider::before {
+  content: "";
+  display: block;
+  width: 160%;
+  height: 100%;
+  background: radial-gradient(60% 100% at 50% 0%, transparent 58%, rgba(38, 219, 18, 0.32) 59%, transparent 61%);
+  transform: translateX(-18%);
+  animation: flow-line 18s ease-in-out infinite alternate;
+}
+
+.flow-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.flow-hover::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 10%, rgba(38, 219, 18, 0.16) 45%, transparent 70%);
+  opacity: 0;
+  transform: translateX(-55%);
+  transition: opacity 180ms ease;
+}
+
+.flow-hover:hover::before {
+  opacity: 1;
+  animation: ripple-flow 1.6s ease-out;
+}
+
+.flow-hover > * {
+  position: relative;
+  z-index: 1;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@keyframes flow-current {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+    transform: translate3d(-1.5%, -0.5%, 0) scale(1.02);
+  }
+  to {
+    background-position: 80px 24px, 120px 0, 96px 0;
+    transform: translate3d(1.5%, 0.5%, 0) scale(1.04);
+  }
+}
+
+@keyframes ripple-flow {
+  from {
+    transform: translateX(-65%);
+  }
+  to {
+    transform: translateX(70%);
+  }
+}
+
+@keyframes flow-line {
+  from {
+    transform: translateX(-22%);
+  }
+  to {
+    transform: translateX(-8%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-field,
+  .flow-divider::before,
+  .flow-hover:hover::before {
+    animation: none;
+  }
+}
