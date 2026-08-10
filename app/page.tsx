@@ -12,6 +12,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { CodingStats } from "@/components/CodingStats";
 import { ExternalButton } from "@/components/ExternalButton";
 import { Header } from "@/components/Header";
+import { ProofStrip } from "@/components/ProofStrip";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeader } from "@/components/SectionHeader";
 
@@ -108,13 +109,6 @@ const architectureNotes = [
   "Event-driven flow over Kafka topics",
   "gRPC contracts between internal services",
   "Dockerized local development environment"
-];
-
-const proofPoints = [
-  ["731", "Codolio tracked solves"],
-  ["Kafka/gRPC", "microservice flows"],
-  ["Auth/API", "backend fundamentals"],
-  ["Docker", "local systems setup"]
 ];
 
 export default function Home() {
@@ -217,17 +211,7 @@ export default function Home() {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="flow-divider" />
-        <div className="grid border-y border-line bg-[#060806] sm:grid-cols-4">
-          {proofPoints.map(([value, label]) => (
-            <div
-              key={label}
-              className="border-b border-line p-4 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
-            >
-              <p className="text-sm font-semibold text-white">{value}</p>
-              <p className="mt-1 text-xs text-slate-500">{label}</p>
-            </div>
-          ))}
-        </div>
+        <ProofStrip />
 
         <AnimatedSection id="about" className="py-14 sm:py-16">
           <SectionHeader eyebrow="About" title="Engineer by fundamentals." />
