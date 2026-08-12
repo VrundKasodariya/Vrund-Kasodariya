@@ -51,6 +51,40 @@ The resume download button points to:
 
 Replace `public/resume.pdf` with the final resume file before publishing.
 
+## Writing Blog Posts
+
+Blog posts live in:
+
+```text
+content/blog
+```
+
+Create a new `.md` file with this format:
+
+```md
+---
+title: "Your Blog Title"
+description: "Short summary shown on the blog page."
+date: "2026-08-12"
+tags: ["Backend", "Systems"]
+published: true
+---
+
+Write your post here using Markdown.
+```
+
+The filename becomes the URL slug. For example:
+
+```text
+content/blog/backend-first-principles.md
+```
+
+becomes:
+
+```text
+/blog/backend-first-principles
+```
+
 ## Deployment
 
 Deploy on Vercel:

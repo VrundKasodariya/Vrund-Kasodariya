@@ -6,6 +6,7 @@ const navItems = [
   ["About", "#about"],
   ["Journey", "#journey"],
   ["Projects", "#projects"],
+  ["Blog", "/blog"],
   ["Skills", "#skills"],
   ["Contact", "#contact"]
 ];
