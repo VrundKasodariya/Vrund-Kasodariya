@@ -1,6 +1,8 @@
 "use client";
 
-import { Github, Linkedin } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Github, Linkedin, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   ["About", "#about"],
@@ -12,6 +14,16 @@ const navItems = [
 ];
 
 export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/88 backdrop-blur-2xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-6 lg:px-8">
@@ -38,7 +50,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open Vrund Kasodariya GitHub profile"
-            className="rounded border border-line bg-[#070907] p-2 text-slate-300 transition hover:border-electric/60 hover:text-electric"
+            className="hidden rounded border border-line bg-[#070907] p-2 text-slate-300 transition hover:border-electric/60 hover:text-electric sm:inline-flex"
           >
             <Github size={18} />
           </a>
@@ -47,12 +59,68 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open Vrund Kasodariya LinkedIn profile"
-            className="rounded border border-line bg-[#070907] p-2 text-slate-300 transition hover:border-electric/60 hover:text-electric"
+            className="hidden rounded border border-line bg-[#070907] p-2 text-slate-300 transition hover:border-electric/60 hover:text-electric sm:inline-flex"
           >
             <Linkedin size={18} />
           </a>
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            className="inline-flex rounded border border-line bg-[#070907] p-2 text-slate-300 transition hover:border-electric/60 hover:text-electric md:hidden"
+          >
+            {menuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </nav>
+
+      <AnimatePresence>
+        {menuOpen ? (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="overflow-hidden border-b border-line bg-ink/95 backdrop-blur-2xl md:hidden"
+          >
+            <div className="flex flex-col gap-1 px-5 py-3 sm:px-6">
+              {navItems.map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded px-3 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-electric/10 hover:text-white"
+                >
+                  {label}
+                </a>
+              ))}
+              <div className="mt-2 flex items-center gap-2 border-t border-line pt-3">
+                <a
+                  href="https://github.com/VrundKasodariya"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Vrund Kasodariya GitHub profile"
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex items-center gap-2 rounded border border-line bg-[#070907] px-3 py-2 text-xs font-medium text-slate-300 transition hover:border-electric/60 hover:text-electric"
+                >
+                  <Github size={16} /> GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/vrund-kasodariya/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Vrund Kasodariya LinkedIn profile"
+                  onClick={() => setMenuOpen(false)}
+                  className="inline-flex items-center gap-2 rounded border border-line bg-[#070907] px-3 py-2 text-xs font-medium text-slate-300 transition hover:border-electric/60 hover:text-electric"
+                >
+                  <Linkedin size={16} /> LinkedIn
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }
