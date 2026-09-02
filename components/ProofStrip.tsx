@@ -45,7 +45,7 @@ export function ProofStrip() {
     <div className="grid border-y border-line bg-[#060806] sm:grid-cols-4">
       <div className="border-b border-line p-4 sm:border-b-0 sm:border-r">
         <p className="text-sm font-semibold text-white">{totalSolved}</p>
-        <p className="mt-1 text-xs text-slate-500">Codolio tracked solves</p>
+        <p className="mt-1 text-xs text-slate-400">Codolio tracked solves</p>
       </div>
       {staticProofPoints.map(([value, label]) => (
         <div
@@ -53,7 +53,7 @@ export function ProofStrip() {
           className="border-b border-line p-4 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
         >
           <p className="text-sm font-semibold text-white">{value}</p>
-          <p className="mt-1 text-xs text-slate-500">{label}</p>
+          <p className="mt-1 text-xs text-slate-400">{label}</p>
         </div>
       ))}
     </div>

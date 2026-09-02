@@ -15,6 +15,7 @@ const navItems = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string>(navItems[0][1]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -23,6 +24,30 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const sections = navItems
+      .filter(([, href]) => href.startsWith("#"))
+      .map(([, href]) => document.getElementById(href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveHref(`#${visible[0].target.id}`);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-ink/88 backdrop-blur-2xl">
@@ -38,7 +63,10 @@ export function Header() {
             <a
               key={label}
               href={href}
-              className="rounded px-2.5 py-1.5 text-xs font-medium text-slate-400 transition hover:bg-electric/10 hover:text-white"
+              aria-current={activeHref === href ? "page" : undefined}
+              className={`rounded px-2.5 py-1.5 text-xs font-medium transition hover:bg-electric/10 hover:text-white ${
+                activeHref === href ? "bg-electric/10 text-white" : "text-slate-400"
+              }`}
             >
               {label}
             </a>

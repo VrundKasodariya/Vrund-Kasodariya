@@ -1,6 +1,7 @@
 import {
   ArrowDownToLine,
   BookOpen,
+  GraduationCap,
   Github,
   Linkedin,
   Mail,
@@ -68,20 +69,24 @@ const projects = [
 
 const skillGroups = [
   {
+    title: "Languages",
+    skills: ["C++", "Java", "JavaScript", "TypeScript", "Python", "SQL", "HTML", "CSS"]
+  },
+  {
     title: "Backend",
     skills: ["Node.js", "Express.js", "REST APIs", "gRPC", "Authentication", "JWT", "Kafka"]
   },
   {
     title: "Databases",
-    skills: ["PostgreSQL", "MongoDB", "Redis basics"]
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis basics"]
   },
   {
-    title: "Tools",
-    skills: ["Docker", "Git", "GitHub", "Postman", "Linux basics"]
+    title: "Cloud & DevOps",
+    skills: ["Docker", "Cloudinary", "Render", "Git", "GitHub", "Postman", "Linux basics"]
   },
   {
-    title: "Languages",
-    skills: ["C++", "JavaScript", "TypeScript", "Python"]
+    title: "AI / ML",
+    skills: ["Faster-Whisper", "Speech Diarization", "Voice Activity Detection", "NLP"]
   },
   {
     title: "Concepts",
@@ -101,8 +106,29 @@ const focusItems = [
   ["Studying", "Backend first principles, auth, APIs"],
   ["Building", "Kafka + gRPC service communication"],
   ["Practicing", "DSA and competitive programming"],
-  ["Mindset", "discipline --steady-like-current"]
+  ["Mindset", "Calm, consistent, always moving forward"]
 ];
+
+const education = {
+  school: "Nitte Meenakshi Institute of Technology",
+  location: "Bengaluru, India",
+  degree: "B.E. in Computer Science and Engineering",
+  detail: "CGPA: 8.67 / 10.00",
+  period: "Dec 2022 – May 2026"
+};
+
+const experience = {
+  company: "Arvasit Technolabs Pvt. Ltd.",
+  location: "Bengaluru, India",
+  role: "Software Engineer Intern",
+  period: "Feb 2026 – Mar 2026",
+  highlights: [
+    "Architected a distributed order-processing platform in Node.js with 3 independent microservices (Order, Payment, Inventory) across fully decoupled service boundaries.",
+    "Engineered an Apache Kafka event-driven messaging layer with purpose-built producers and consumers per domain, eliminating synchronous coupling between services.",
+    "Implemented gRPC with Protocol Buffers for typed, low-latency inter-service communication, enforcing strict schema contracts across all 3 microservice boundaries.",
+    "Containerized 100% of the microservices stack using Docker, achieving consistent, reproducible deployments and validating end-to-end order status tracking."
+  ]
+};
 
 const architectureNotes = [
   "Order, Payment, and Inventory service boundaries",
@@ -115,7 +141,6 @@ export default function Home() {
   return (
     <main id="home" className="relative min-h-screen overflow-hidden">
       <div className="background-grid pointer-events-none absolute inset-0" />
-      <div className="flow-field pointer-events-none absolute inset-x-[-12%] top-0 h-[48rem]" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-electric/[0.045] blur-3xl" />
       <Header />
 
@@ -139,16 +164,10 @@ export default function Home() {
               problems, and document my journey from fundamentals to
               production-grade engineering.
             </p>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
               I like swimming, and I try to bring the same rhythm into
               engineering: calm, consistent, and always moving forward.
             </p>
-            <div className="mt-5 max-w-2xl rounded border border-line bg-black/35 px-3 py-2 font-mono text-xs leading-6 text-slate-400">
-              <span className="text-electric">vrund@backend</span>
-              <span className="text-slate-600"> :~$ </span>
-              <span className="text-signal">discipline</span>{" "}
-              --steady-like-current
-            </div>
             <div className="mt-6 grid gap-2.5 sm:flex sm:flex-wrap">
               <ExternalButton href="#projects" variant="primary">
                 View Projects <MoveRight size={17} />
@@ -195,7 +214,7 @@ export default function Home() {
                     key={label}
                     className="table-line grid grid-cols-[6rem_1fr] gap-4 py-3 last:border-b-0"
                   >
-                    <span className="text-[0.7rem] uppercase tracking-[0.12em] text-slate-500">
+                    <span className="text-[0.7rem] uppercase tracking-[0.12em] text-slate-400">
                       {label.toLowerCase()}
                     </span>
                     <span className="text-xs leading-6 text-slate-300">
@@ -210,26 +229,55 @@ export default function Home() {
       </section>
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <div className="flow-divider" />
+        <div className="hairline" />
         <ProofStrip />
 
         <AnimatedSection id="about" className="py-14 sm:py-16">
           <SectionHeader eyebrow="About" title="Engineer by fundamentals." />
           <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
             <p className="text-lg font-medium leading-7 text-white sm:text-xl sm:leading-8">
-              I am a Computer Science student and backend-focused software
-              engineer.
+              I am a Computer Science undergraduate and backend-focused
+              software engineer.
             </p>
             <p className="max-w-3xl text-base leading-7 text-slate-400">
               I enjoy understanding systems deeply instead of only learning
               tools. My current focus is backend first principles,
               authentication, APIs, databases, distributed systems, and clean
-              architecture.
+              architecture. I&apos;m pursuing my B.E. in Computer Science and
+              Engineering at Nitte Meenakshi Institute of Technology,
+              Bengaluru, graduating in 2026.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="flow-divider" />
+        <div className="hairline" />
+
+        <AnimatedSection className="py-14 sm:py-16">
+          <SectionHeader eyebrow="Education" title="Academic background." />
+          <div className="surface rounded-lg p-5 sm:p-6">
+            <div className="flex flex-col justify-between gap-3 sm:flex-row">
+              <div className="flex items-start gap-3">
+                <GraduationCap className="mt-0.5 shrink-0 text-electric" size={20} />
+                <div>
+                  <h3 className="text-lg font-semibold tracking-tight text-white">
+                    {education.school}
+                  </h3>
+                  <p className="mt-2 text-slate-400">
+                    {education.degree} &middot; {education.location}
+                  </p>
+                </div>
+              </div>
+              <span className="whitespace-nowrap text-xs uppercase tracking-[0.18em] text-signal">
+                {education.period}
+              </span>
+            </div>
+            <p className="mt-5 font-mono text-xs uppercase tracking-[0.12em] text-slate-400">
+              {education.detail}
+            </p>
+          </div>
+        </AnimatedSection>
+
+        <div className="hairline" />
 
         <AnimatedSection id="journey" className="py-14 sm:py-16">
           <SectionHeader
@@ -237,24 +285,24 @@ export default function Home() {
             title="A structured roadmap from protocol basics to scale."
             description="I am learning backend from first principles and turning concepts into working projects."
           />
-          <div className="overflow-hidden rounded border border-line bg-[#070907]">
+          <ol className="overflow-hidden rounded border border-line bg-[#070907]">
             {journey.map((item, index) => (
-              <div
+              <li
                 key={item}
                 className="grid gap-3 border-b border-line p-3.5 transition last:border-b-0 hover:bg-white/[0.025] sm:grid-cols-[7.5rem_1fr]"
               >
                 <span className="font-mono text-xs uppercase tracking-[0.14em] text-linkblue/85">
                   step_{String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="text-sm font-medium leading-5 text-slate-200">
+                <span className="text-sm font-medium leading-5 text-slate-200">
                   {item}
-                </h3>
-              </div>
+                </span>
+              </li>
             ))}
-          </div>
+          </ol>
         </AnimatedSection>
 
-        <div className="flow-divider" />
+        <div className="hairline" />
 
         <AnimatedSection id="projects" className="py-14 sm:py-16">
           <SectionHeader
@@ -285,7 +333,7 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        <div className="flow-divider" />
+        <div className="hairline" />
 
         <AnimatedSection className="py-14 sm:py-16">
           <SectionHeader
@@ -296,7 +344,7 @@ export default function Home() {
           <CodingStats />
         </AnimatedSection>
 
-        <div className="flow-divider" />
+        <div className="hairline" />
 
         <AnimatedSection id="skills" className="py-14 sm:py-16">
           <SectionHeader
@@ -312,16 +360,16 @@ export default function Home() {
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-linkblue/85">
                   {group.title}
                 </h3>
-                <div className="flex flex-wrap gap-1.5">
+                <ul className="flex flex-wrap gap-1.5">
                   {group.skills.map((skill) => (
-                    <span
+                    <li
                       key={skill}
                       className="rounded border border-line bg-black/35 px-2 py-1 text-xs text-slate-300"
                     >
                       {skill}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             ))}
           </div>
@@ -333,21 +381,24 @@ export default function Home() {
             <div className="flex flex-col justify-between gap-3 sm:flex-row">
               <div>
                 <h3 className="text-lg font-semibold tracking-tight text-white">
-                  Software Engineer Intern - Backend
+                  {experience.role}
                 </h3>
                 <p className="mt-2 text-slate-400">
-                  Arvasit Technolabs Pvt. Ltd.
+                  {experience.company} &middot; {experience.location}
                 </p>
               </div>
-              <span className="text-xs uppercase tracking-[0.18em] text-signal">
-                Internship
+              <span className="whitespace-nowrap text-xs uppercase tracking-[0.18em] text-signal">
+                {experience.period}
               </span>
             </div>
-            <p className="mt-5 max-w-4xl text-sm leading-6 text-slate-400">
-              Worked on backend systems using Docker, Apache Kafka, gRPC, and
-              Node.js. Built microservice communication flows and documented
-              backend architecture.
-            </p>
+            <ul className="mt-5 max-w-4xl space-y-2.5">
+              {experience.highlights.map((point) => (
+                <li key={point} className="flex gap-2 text-sm leading-6 text-slate-400">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/80" />
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
         </AnimatedSection>
 

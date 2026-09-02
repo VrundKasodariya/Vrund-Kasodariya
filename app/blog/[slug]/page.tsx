@@ -46,7 +46,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <main className="relative min-h-screen overflow-hidden px-5 py-10 sm:px-6 lg:px-8">
       <div className="background-grid pointer-events-none absolute inset-0" />
-      <div className="flow-field pointer-events-none absolute inset-x-[-12%] top-0 h-[34rem]" />
 
       <article className="relative mx-auto max-w-3xl">
         <Link
@@ -74,7 +73,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
             {post.description}
           </p>
-          <div className="mt-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-500">
+          <div className="mt-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-400">
             {new Date(post.date).toLocaleDateString("en", {
               year: "numeric",
               month: "short",

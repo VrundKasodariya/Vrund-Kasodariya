@@ -77,7 +77,7 @@ function isCodingStatsPayload(value: unknown): value is CodingStatsPayload {
 function Metric({ label, value }: { label: string; value: StatValue }) {
   return (
     <div>
-      <p className="text-[0.68rem] uppercase tracking-[0.12em] text-slate-500">
+      <p className="text-[0.68rem] uppercase tracking-[0.12em] text-slate-400">
         {label}
       </p>
       <p className="mt-1 text-lg font-semibold tracking-tight text-electric">
@@ -182,7 +182,7 @@ export function CodingStats() {
     <div className="space-y-4">
       <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="surface rounded-lg p-5">
-          <p className="text-xs uppercase tracking-[0.16em] text-slate-500">
+          <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
             Total solved
           </p>
           <p className="mt-2 text-3xl font-semibold tracking-tight text-electric">
@@ -207,7 +207,7 @@ export function CodingStats() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={platform.ariaLabel}
-              className="flow-hover rounded border border-line bg-[#070907] p-4 transition hover:border-electric/45 hover:bg-[#0a0d0a]"
+              className="rounded border border-line bg-[#070907] p-4 transition hover:border-electric/45 hover:bg-[#0a0d0a]"
             >
               <p className="mb-4 border-b border-line pb-3 text-sm font-semibold text-white">
                 {platform.label}
@@ -222,7 +222,7 @@ export function CodingStats() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-1 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-1 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-400 sm:flex-row sm:items-center sm:justify-between">
         <span>Auto-updated periodically</span>
         <span>
           Source: {stats.source} | Cache: {stats.cacheStatus} | Last updated:{" "}

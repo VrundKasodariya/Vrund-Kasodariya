@@ -22,7 +22,7 @@ export function ExternalButton({
 }: ExternalButtonProps) {
   return (
     <a
-      className={`flow-hover inline-flex min-h-10 items-center justify-center gap-2 rounded border px-3.5 text-xs font-semibold transition duration-200 max-sm:w-full ${variants[variant]} ${className}`}
+      className={`inline-flex min-h-10 items-center justify-center gap-2 rounded border px-3.5 text-xs font-semibold transition duration-200 max-sm:w-full ${variants[variant]} ${className}`}
       {...props}
     >
       {children}

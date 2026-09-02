@@ -14,7 +14,7 @@ export function ProjectCard({ title, description, tags }: ProjectCardProps) {
     <motion.article
       whileHover={{ y: -3 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className="flow-hover group relative flex h-full min-h-[17rem] flex-col rounded border border-line bg-[#070907] p-4 transition duration-200 hover:border-electric/45 hover:bg-[#0a0d0a]"
+      className="group relative flex h-full min-h-[17rem] flex-col rounded border border-line bg-[#070907] p-4 transition duration-200 hover:border-electric/45 hover:bg-[#0a0d0a]"
     >
       <div className="mb-4 flex items-start justify-between gap-4 border-b border-line pb-3">
         <div>
@@ -26,7 +26,7 @@ export function ProjectCard({ title, description, tags }: ProjectCardProps) {
             {title}
           </h3>
         </div>
-        <span className="rounded border border-line bg-black/35 p-1.5 text-slate-500 transition group-hover:border-linkblue/45 group-hover:text-linkblue">
+        <span className="rounded border border-line bg-black/35 p-1.5 text-slate-400 transition group-hover:border-linkblue/45 group-hover:text-linkblue">
           <ArrowUpRight size={15} aria-hidden="true" />
         </span>
       </div>
@@ -40,10 +40,6 @@ export function ProjectCard({ title, description, tags }: ProjectCardProps) {
             {tag}
           </span>
         ))}
-      </div>
-      <div className="mt-5 flex items-center justify-between border-t border-line pt-3 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-500">
-        <span className="text-linkblue/75">Repo/status pending</span>
-        <span className="text-signal">WIP</span>
       </div>
     </motion.article>
   );

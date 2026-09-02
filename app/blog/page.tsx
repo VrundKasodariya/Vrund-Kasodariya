@@ -15,7 +15,6 @@ export default function BlogPage() {
   return (
     <main className="relative min-h-screen overflow-hidden px-5 py-10 sm:px-6 lg:px-8">
       <div className="background-grid pointer-events-none absolute inset-0" />
-      <div className="flow-field pointer-events-none absolute inset-x-[-12%] top-0 h-[34rem]" />
 
       <div className="relative mx-auto max-w-5xl">
         <Link
@@ -46,7 +45,7 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="flow-hover group block rounded border border-line bg-[#070907] p-5 transition hover:border-electric/45 hover:bg-[#0a0d0a]"
+                className="group block rounded border border-line bg-[#070907] p-5 transition hover:border-electric/45 hover:bg-[#0a0d0a]"
               >
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                   <div>
@@ -57,7 +56,7 @@ export default function BlogPage() {
                         month: "short",
                         day: "numeric"
                       })}
-                      <span className="text-slate-600">/</span>
+                      <span className="text-slate-400">/</span>
                       {post.readingTime}
                     </div>
                     <h2 className="text-xl font-semibold tracking-tight text-white">
@@ -69,7 +68,7 @@ export default function BlogPage() {
                   </div>
                   <ArrowUpRight
                     size={18}
-                    className="text-slate-500 transition group-hover:text-electric"
+                    className="text-slate-400 transition group-hover:text-electric"
                   />
                 </div>
                 <div className="mt-5 flex flex-wrap gap-1.5">
