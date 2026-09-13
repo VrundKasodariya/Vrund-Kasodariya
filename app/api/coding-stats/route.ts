@@ -38,7 +38,6 @@ type CodingStats = {
 };
 
 declare global {
-  // eslint-disable-next-line no-var
   var codingStatsPreviousValue:
     | { stats: CodingStats; savedAt: number }
     | undefined;
@@ -105,9 +104,7 @@ function getPreviousStats() {
 }
 
 function createTimeoutSignal() {
-  const controller = new AbortController();
-  setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  return controller.signal;
+  return AbortSignal.timeout(FETCH_TIMEOUT_MS);
 }
 
 function numberOrFallback(value: unknown, fallback: StatValue) {

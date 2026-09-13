@@ -8,12 +8,38 @@ function InlineCode({ children }: { children: string }) {
   );
 }
 
+const INLINE_TOKEN = /(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]+\))/g;
+
 function renderInline(text: string) {
-  const parts = text.split(/(`[^`]+`)/g);
+  const parts = text.split(INLINE_TOKEN);
 
   return parts.map((part, index) => {
     if (part.startsWith("`") && part.endsWith("`")) {
       return <InlineCode key={index}>{part.slice(1, -1)}</InlineCode>;
+    }
+
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      return (
+        <strong key={index} className="font-semibold text-white">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+
+    const link = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+    if (link) {
+      const [, label, href] = link;
+      const external = /^https?:\/\//.test(href);
+      return (
+        <a
+          key={index}
+          href={href}
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          className="text-linkblue underline decoration-linkblue/40 underline-offset-4 transition hover:decoration-linkblue"
+        >
+          {label}
+        </a>
+      );
     }
 
     return part;
@@ -86,6 +112,18 @@ export function MarkdownContent({ content }: { content: string }) {
     flushList();
 
     if (!line.trim()) {
+      return;
+    }
+
+    if (line.startsWith("### ")) {
+      elements.push(
+        <h3
+          key={`h3-${elements.length}`}
+          className="mt-8 text-lg font-semibold tracking-tight text-white"
+        >
+          {renderInline(line.slice(4))}
+        </h3>
+      );
       return;
     }
 

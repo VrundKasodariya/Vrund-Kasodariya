@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
-import { getAllBlogPosts } from "@/lib/blog";
+import { formatPostDate, getAllBlogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog | Vrund Kasodariya",
   description:
-    "Backend systems and technology writing by Vrund Kasodariya."
+    "Backend systems and technology writing by Vrund Kasodariya.",
+  alternates: {
+    canonical: "/blog"
+  }
 };
 
 export default function BlogPage() {
@@ -51,11 +54,7 @@ export default function BlogPage() {
                   <div>
                     <div className="mb-3 flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-linkblue/85">
                       <BookOpen size={14} />
-                      {new Date(post.date).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric"
-                      })}
+                      {formatPostDate(post.date)}
                       <span className="text-slate-400">/</span>
                       {post.readingTime}
                     </div>

@@ -107,3 +107,17 @@ export function getBlogPost(slug: string) {
     content
   };
 }
+
+// Frontmatter dates are calendar days; format in UTC so they don't shift by timezone.
+export function formatPostDate(date: string) {
+  if (!date) {
+    return "";
+  }
+
+  return new Date(date).toLocaleDateString("en", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC"
+  });
+}

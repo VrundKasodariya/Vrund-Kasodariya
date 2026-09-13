@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { MarkdownContent } from "@/components/MarkdownContent";
-import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
+import { formatPostDate, getAllBlogPosts, getBlogPost } from "@/lib/blog";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -31,7 +31,18 @@ export async function generateMetadata({
 
   return {
     title: `${post.title} | Vrund Kasodariya`,
-    description: post.description
+    description: post.description,
+    alternates: {
+      canonical: `/blog/${post.slug}`
+    },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.description,
+      url: `/blog/${post.slug}`,
+      publishedTime: post.date || undefined,
+      tags: post.tags
+    }
   };
 }
 
@@ -74,11 +85,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.description}
           </p>
           <div className="mt-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-400">
-            {new Date(post.date).toLocaleDateString("en", {
-              year: "numeric",
-              month: "short",
-              day: "numeric"
-            })}{" "}
+            {formatPostDate(post.date)}{" "}
             / {post.readingTime}
           </div>
         </header>

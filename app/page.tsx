@@ -172,7 +172,7 @@ export default function Home() {
               <ExternalButton href="#projects" variant="primary">
                 View Projects <MoveRight size={17} />
               </ExternalButton>
-              <ExternalButton href="/resume.pdf">
+              <ExternalButton href="/resume.pdf" download="Vrund-Kasodariya-Resume.pdf">
                 Download Resume <ArrowDownToLine size={17} />
               </ExternalButton>
               <ExternalButton
@@ -247,6 +247,35 @@ export default function Home() {
               Engineering at Nitte Meenakshi Institute of Technology,
               Bengaluru, graduating in 2026.
             </p>
+          </div>
+        </AnimatedSection>
+
+        <div className="hairline" />
+
+        <AnimatedSection id="experience" className="py-14 sm:py-16">
+          <SectionHeader eyebrow="Experience" title="Backend engineering in practice." />
+          <div className="surface rounded-lg p-5 sm:p-6">
+            <div className="flex flex-col justify-between gap-3 sm:flex-row">
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight text-white">
+                  {experience.role}
+                </h3>
+                <p className="mt-2 text-slate-400">
+                  {experience.company} &middot; {experience.location}
+                </p>
+              </div>
+              <span className="whitespace-nowrap text-xs uppercase tracking-[0.18em] text-signal">
+                {experience.period}
+              </span>
+            </div>
+            <ul className="mt-5 max-w-4xl space-y-2.5">
+              {experience.highlights.map((point) => (
+                <li key={point} className="flex gap-2 text-sm leading-6 text-slate-400">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/80" />
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
         </AnimatedSection>
 
@@ -372,33 +401,6 @@ export default function Home() {
                 </ul>
               </div>
             ))}
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection className="py-14 sm:py-16">
-          <SectionHeader eyebrow="Experience" title="Backend engineering in practice." />
-          <div className="surface rounded-lg p-5 sm:p-6">
-            <div className="flex flex-col justify-between gap-3 sm:flex-row">
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight text-white">
-                  {experience.role}
-                </h3>
-                <p className="mt-2 text-slate-400">
-                  {experience.company} &middot; {experience.location}
-                </p>
-              </div>
-              <span className="whitespace-nowrap text-xs uppercase tracking-[0.18em] text-signal">
-                {experience.period}
-              </span>
-            </div>
-            <ul className="mt-5 max-w-4xl space-y-2.5">
-              {experience.highlights.map((point) => (
-                <li key={point} className="flex gap-2 text-sm leading-6 text-slate-400">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/80" />
-                  {point}
-                </li>
-              ))}
-            </ul>
           </div>
         </AnimatedSection>
 

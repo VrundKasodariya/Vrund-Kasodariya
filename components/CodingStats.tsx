@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { fetchCodingStats } from "@/lib/coding-stats-client";
 
 type StatValue = number | string;
 
@@ -111,12 +112,11 @@ export function CodingStats() {
       }
 
       try {
-        const response = await fetch("/api/coding-stats");
-        if (!response.ok) {
+        const data = await fetchCodingStats<CodingStatsPayload>();
+        if (!data || !isCodingStatsPayload(data)) {
           return;
         }
 
-        const data = (await response.json()) as CodingStatsPayload;
         if (!cancelled) {
           setStats(data);
           if (data.cacheStatus !== "emergency") {

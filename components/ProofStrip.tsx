@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { fetchCodingStats } from "@/lib/coding-stats-client";
 
 type CodingStatsResponse = {
   totalProblemsSolved: number | string;
@@ -19,18 +20,9 @@ export function ProofStrip() {
     let cancelled = false;
 
     async function loadTotal() {
-      try {
-        const response = await fetch("/api/coding-stats");
-        if (!response.ok) {
-          return;
-        }
-
-        const data = (await response.json()) as CodingStatsResponse;
-        if (!cancelled) {
-          setTotalSolved(data.totalProblemsSolved);
-        }
-      } catch {
-        // Keep exact emergency total visible if the stats route is unavailable.
+      const data = await fetchCodingStats<CodingStatsResponse>();
+      if (!cancelled) {
+        setTotalSolved(data?.totalProblemsSolved ?? "700+");
       }
     }
 
